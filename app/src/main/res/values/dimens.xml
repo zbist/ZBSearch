@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_column_text_size">24sp</dimen>
+    <dimen name="default_margin">12dp</dimen>
+    <dimen name="name_card_size">15sp</dimen>
+    <dimen name="card_text_margin">4sp</dimen>
+    <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="width_of_card_view">120sp</dimen>
+</resources>
