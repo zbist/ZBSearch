@@ -12,10 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.notesfinal.zbsearch.R
 import com.example.notesfinal.zbsearch.databinding.FavoritesFragmentBinding
 import com.example.notesfinal.zbsearch.databinding.MainFragmentBinding
+import com.example.notesfinal.zbsearch.model.Movie
+import com.example.notesfinal.zbsearch.ui.RouterHolder
 import com.example.notesfinal.zbsearch.ui.favorites.FavoritesViewModel
+import com.example.notesfinal.zbsearch.ui.movie.MovieFragment
 import com.example.notesfinal.zbsearch.viewBinding
 
-class MainFragment : Fragment(R.layout.main_fragment) {
+class MainFragment() : Fragment(R.layout.main_fragment) {
 
     companion object {
         const val MOVIE = "MOVIE"
@@ -41,8 +44,12 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        upcomingMoviesAdapter = UpcomingMoviesAdapter()
-        nowPlayingMoviesAdapter = NowPlayingMoviesAdapter()
+        upcomingMoviesAdapter = UpcomingMoviesAdapter() {
+            (activity as RouterHolder).mainRouter.openMovie(it)
+        }
+        nowPlayingMoviesAdapter = NowPlayingMoviesAdapter {
+            (activity as RouterHolder).mainRouter.openMovie(it)
+        }
         nowPlayingMoviesRecyclerView = binding.mainNowPlayingRecyclerView
         upcomingMoviesRecyclerView = binding.mainUpcomingRecyclerView
 

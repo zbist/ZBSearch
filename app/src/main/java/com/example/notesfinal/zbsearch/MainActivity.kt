@@ -2,45 +2,41 @@ package com.example.notesfinal.zbsearch
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.notesfinal.zbsearch.ui.MainRouter
+import com.example.notesfinal.zbsearch.ui.RouterHolder
 import com.example.notesfinal.zbsearch.ui.favorites.FavoritesFragment
 import com.example.notesfinal.zbsearch.ui.main.MainFragment
+import com.example.notesfinal.zbsearch.ui.movie.MovieFragment
 import com.example.notesfinal.zbsearch.ui.ratings.RatingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(R.layout.main_activity), RouterHolder {
+
+    override val mainRouter = MainRouter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
         setSupportActionBar(findViewById(R.id.toolbar))
         initBottomNavigationMenu()
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container_for_fragments, MainFragment.newInstance())
-                .commitNow()
+            mainRouter.openHome()
         }
     }
 
     private fun initBottomNavigationMenu() {
         findViewById<BottomNavigationView>(R.id.bottom_navigation_menu)
-            .setOnNavigationItemSelectedListener {
+            .setOnNavigationItemSelectedListener { it ->
                 when (it.itemId) {
                     R.id.navigation_favorites -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.container_for_fragments, FavoritesFragment.newInstance())
-                            .commit()
+                        mainRouter.openFavorites()
                         true
                     }
                     R.id.navigation_home -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.container_for_fragments, MainFragment.newInstance())
-                            .commit()
+                        mainRouter.openHome()
                         true
                     }
                     R.id.navigation_ratings -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.container_for_fragments, RatingsFragment.newInstance())
-                            .commit()
+                        mainRouter.openRatings()
                         true
                     }
                     else -> false
