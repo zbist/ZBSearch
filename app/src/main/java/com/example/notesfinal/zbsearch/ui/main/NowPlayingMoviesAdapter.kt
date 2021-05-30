@@ -14,10 +14,7 @@ class NowPlayingMoviesAdapter(val onClick: (Movie) -> Unit) :
 
     var listOfMovies = emptyList<Movie>()
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): MainHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.movie_now_playing_item, parent, false)
         return MainHolder(view)

@@ -11,15 +11,20 @@ class MainViewModel : ViewModel() {
 
     private val repository: IRepository = MockRepositoryImpl
 
-    private val _moviesNowPlaying: MutableLiveData<List<Movie>> = MutableLiveData()
-    val moviesNowPlaying: LiveData<List<Movie>> = _moviesNowPlaying
+    private val _moviesNowPlayingLiveData: MutableLiveData<List<Movie>> = MutableLiveData()
+    val moviesNowPlayingLiveData: LiveData<List<Movie>> = _moviesNowPlayingLiveData
 
-    private val _moviesUpcoming: MutableLiveData<List<Movie>> = MutableLiveData()
-    val moviesUpcoming: LiveData<List<Movie>> = _moviesUpcoming
+    private val _moviesUpcomingLiveData: MutableLiveData<List<Movie>> = MutableLiveData()
+    val moviesUpcomingLiveData: LiveData<List<Movie>> = _moviesUpcomingLiveData
+
+    private val _swipeProgressLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+    val swipeProgressLiveData: LiveData<Boolean> = _swipeProgressLiveData
 
     fun fetchMovies(){
-        _moviesNowPlaying.value = repository.getNowPlayingMovies()
-        _moviesUpcoming.value = repository.getUpcomingMovies()
+        _swipeProgressLiveData.value = true
+        _moviesNowPlayingLiveData.value = repository.getNowPlayingMovies()
+        _moviesUpcomingLiveData.value = repository.getUpcomingMovies()
+        _swipeProgressLiveData.value = false
     }
 
 }

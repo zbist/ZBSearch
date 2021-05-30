@@ -15,7 +15,6 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
     companion object {
         fun newInstance(movie: Movie) = MovieFragment().apply {
             arguments?.putParcelable(MainFragment.MOVIE, movie)
-
         }
     }
 
@@ -25,7 +24,7 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movie = arguments?.getParcelable<Movie>(MainFragment.MOVIE) ?: Movie()
+        val movie = arguments?.getParcelable(MainFragment.MOVIE) ?: Movie()
         initMovie(movie)
     }
 
@@ -42,7 +41,6 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
             releaseDate.text = movie.year
             description.text = movie.description
         }
-
     }
 
 }
