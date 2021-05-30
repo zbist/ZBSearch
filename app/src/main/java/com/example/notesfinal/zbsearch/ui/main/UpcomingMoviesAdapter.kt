@@ -3,12 +3,13 @@ package com.example.notesfinal.zbsearch.ui.main
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesfinal.zbsearch.R
 import com.example.notesfinal.zbsearch.model.Movie
 
-class UpcomingMoviesAdapter : RecyclerView.Adapter<UpcomingMoviesAdapter.UpcomingHolder>() {
+class UpcomingMoviesAdapter(val onClick: (Movie) -> Unit) : RecyclerView.Adapter<UpcomingMoviesAdapter.UpcomingHolder>() {
 
     var listOfMovies = emptyList<Movie>()
 
@@ -22,14 +23,24 @@ class UpcomingMoviesAdapter : RecyclerView.Adapter<UpcomingMoviesAdapter.Upcomin
     }
 
     override fun onBindViewHolder(holder: UpcomingHolder, position: Int) {
-        holder.nameOfMovie.text = listOfMovies[position].name
-        holder.dateOfStartMovie.text = listOfMovies[position].dateOfStart
+        with(holder) {
+            poster.setImageResource(R.mipmap.ic_launcher)
+            nameOfMovie.text = listOfMovies[position].name
+            dateOfStartMovie.text = listOfMovies[position].dateOfStart
+        }
     }
 
     override fun getItemCount() = listOfMovies.size
 
-    class UpcomingHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class UpcomingHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val poster = view.findViewById<ImageView>(R.id.poster_of_movie)
         val nameOfMovie = view.findViewById<TextView>(R.id.name_of_movie)
         val dateOfStartMovie = view.findViewById<TextView>(R.id.date_of_start_movie)
+
+        init {
+            view.setOnClickListener {
+                onClick(listOfMovies[adapterPosition])
+            }
+        }
     }
 }
