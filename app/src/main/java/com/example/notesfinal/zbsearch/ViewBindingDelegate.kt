@@ -17,8 +17,7 @@ fun <V : ViewBinding> Fragment.viewBinding(bind: (view: View) -> V) =
 class ViewBindingDelegate<V : ViewBinding>(
     fragment: Fragment,
     private val bind: (view: View) -> V
-) :
-    ReadOnlyProperty<Fragment, V> {
+) : ReadOnlyProperty<Fragment, V> {
 
     private var viewBinding: V? = null
 

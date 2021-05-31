@@ -1,4 +1,4 @@
-package com.example.notesfinal.zbsearch.ui
+package com.example.notesfinal.zbsearch
 
 interface RouterHolder {
 

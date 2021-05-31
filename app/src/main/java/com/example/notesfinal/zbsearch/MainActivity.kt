@@ -2,12 +2,6 @@ package com.example.notesfinal.zbsearch
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.notesfinal.zbsearch.ui.MainRouter
-import com.example.notesfinal.zbsearch.ui.RouterHolder
-import com.example.notesfinal.zbsearch.ui.favorites.FavoritesFragment
-import com.example.notesfinal.zbsearch.ui.main.MainFragment
-import com.example.notesfinal.zbsearch.ui.movie.MovieFragment
-import com.example.notesfinal.zbsearch.ui.ratings.RatingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(R.layout.main_activity), RouterHolder {

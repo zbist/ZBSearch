@@ -1,21 +1,13 @@
 package com.example.notesfinal.zbsearch.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesfinal.zbsearch.R
-import com.example.notesfinal.zbsearch.databinding.FavoritesFragmentBinding
 import com.example.notesfinal.zbsearch.databinding.MainFragmentBinding
-import com.example.notesfinal.zbsearch.model.Movie
-import com.example.notesfinal.zbsearch.ui.RouterHolder
-import com.example.notesfinal.zbsearch.ui.favorites.FavoritesViewModel
-import com.example.notesfinal.zbsearch.ui.movie.MovieFragment
+import com.example.notesfinal.zbsearch.RouterHolder
 import com.example.notesfinal.zbsearch.viewBinding
 
 class MainFragment() : Fragment(R.layout.main_fragment) {
@@ -44,27 +36,39 @@ class MainFragment() : Fragment(R.layout.main_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        upcomingMoviesAdapter = UpcomingMoviesAdapter() {
+        initAdaptersAndRV()
+
+        binding.swipeToRefresh.setOnRefreshListener {
+            viewModel.fetchMovies()
+            viewModel.swipeProgressLiveData.observe(viewLifecycleOwner) {
+                    binding.swipeToRefresh.isRefreshing = it
+            }
+        }
+
+        viewModel.moviesNowPlayingLiveData.observe(viewLifecycleOwner) {
+            nowPlayingMoviesAdapter.listOfMovies = it
+            nowPlayingMoviesAdapter.notifyDataSetChanged()
+        }
+
+        viewModel.moviesUpcomingLiveData.observe(viewLifecycleOwner) {
+            upcomingMoviesAdapter.listOfMovies = it
+            upcomingMoviesAdapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun initAdaptersAndRV() {
+        upcomingMoviesAdapter = UpcomingMoviesAdapter {
             (activity as RouterHolder).mainRouter.openMovie(it)
         }
         nowPlayingMoviesAdapter = NowPlayingMoviesAdapter {
             (activity as RouterHolder).mainRouter.openMovie(it)
         }
+
         nowPlayingMoviesRecyclerView = binding.mainNowPlayingRecyclerView
         upcomingMoviesRecyclerView = binding.mainUpcomingRecyclerView
 
         nowPlayingMoviesRecyclerView.adapter = nowPlayingMoviesAdapter
         upcomingMoviesRecyclerView.adapter = upcomingMoviesAdapter
-
-        viewModel.moviesNowPlaying.observe(viewLifecycleOwner) {
-            nowPlayingMoviesAdapter.listOfMovies = it
-            nowPlayingMoviesAdapter.notifyDataSetChanged()
-        }
-
-        viewModel.moviesUpcoming.observe(viewLifecycleOwner) {
-            upcomingMoviesAdapter.listOfMovies = it
-            upcomingMoviesAdapter.notifyDataSetChanged()
-        }
     }
 
     override fun onDestroyView() {
