@@ -25,8 +25,8 @@ class UpcomingMoviesAdapter(val onClick: (Movie) -> Unit) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: UpcomingHolder, position: Int) {
         with(holder) {
             poster.setImageResource(R.mipmap.ic_launcher)
-            nameOfMovie.text = listOfMovies[position].name
-            dateOfStartMovie.text = listOfMovies[position].dateOfStart
+            nameOfMovie.text = listOfMovies[position].title
+            dateOfStartMovie.text = listOfMovies[position].releaseDate
         }
     }
 

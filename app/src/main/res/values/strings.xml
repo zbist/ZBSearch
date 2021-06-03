@@ -5,4 +5,5 @@
     <string name="title_home_ratings_item">Ratings</string>
     <string name="text_for_now_playing_movies">Now playing</string>
     <string name="text_for_upcoming_movies">Upcoming</string>
+    <string name="error_text">Some Error</string>
 </resources>
