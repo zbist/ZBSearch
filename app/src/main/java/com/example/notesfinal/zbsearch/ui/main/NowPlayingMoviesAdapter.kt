@@ -23,9 +23,9 @@ class NowPlayingMoviesAdapter(val onClick: (Movie) -> Unit) :
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         with(holder) {
             poster.setImageResource(R.mipmap.ic_launcher)
-            nameOfMovie.text = listOfMovies[position].name
-            yearOfMovie.text = listOfMovies[position].year
-            ratingOfMovie.text = listOfMovies[position].rating
+            nameOfMovie.text = listOfMovies[position].title
+            yearOfMovie.text = listOfMovies[position].releaseDate.subSequence(0, 4)
+            ratingOfMovie.text = listOfMovies[position].voteAverage
         }
     }
 

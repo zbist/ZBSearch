@@ -3,6 +3,7 @@ package com.example.notesfinal.zbsearch.ui.main
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesfinal.zbsearch.R
@@ -41,7 +42,7 @@ class MainFragment() : Fragment(R.layout.main_fragment) {
         binding.swipeToRefresh.setOnRefreshListener {
             viewModel.fetchMovies()
             viewModel.swipeProgressLiveData.observe(viewLifecycleOwner) {
-                    binding.swipeToRefresh.isRefreshing = it
+                binding.swipeToRefresh.isRefreshing = it
             }
         }
 
@@ -53,6 +54,12 @@ class MainFragment() : Fragment(R.layout.main_fragment) {
         viewModel.moviesUpcomingLiveData.observe(viewLifecycleOwner) {
             upcomingMoviesAdapter.listOfMovies = it
             upcomingMoviesAdapter.notifyDataSetChanged()
+        }
+
+        viewModel.errorCheckLiveData.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(context, R.string.error_text, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

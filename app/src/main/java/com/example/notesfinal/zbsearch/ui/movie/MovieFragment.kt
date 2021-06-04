@@ -14,7 +14,9 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
 
     companion object {
         fun newInstance(movie: Movie) = MovieFragment().apply {
-            arguments?.putParcelable(MainFragment.MOVIE, movie)
+            arguments = Bundle().apply {
+                putParcelable(MainFragment.MOVIE, movie)
+            }
         }
     }
 
@@ -30,16 +32,13 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
 
     private fun initMovie(movie: Movie) {
         with(binding) {
-            title.text = movie.name
-            englishTitle.text = movie.englishName
+            title.text = movie.title
+            englishTitle.text = movie.originalTitle
             poster.setImageResource(R.mipmap.ic_launcher)
             genre.text = movie.genre
-            longOfMovie.text = movie.longOfMovie
-            rating.text = movie.rating
-            budget.text = movie.budget
-            revenue.text = movie.revenue
-            releaseDate.text = movie.year
-            description.text = movie.description
+            rating.text = movie.voteAverage
+            releaseDate.text = movie.releaseDate
+            description.text = movie.overview
         }
     }
 
