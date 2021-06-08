@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.notesfinal.zbsearch.R
 import com.example.notesfinal.zbsearch.databinding.MovieFragmentBinding
-import com.example.notesfinal.zbsearch.model.Movie
+import com.example.notesfinal.zbsearch.domain.model.Movie
 import com.example.notesfinal.zbsearch.ui.main.MainFragment
 import com.example.notesfinal.zbsearch.viewBinding
 

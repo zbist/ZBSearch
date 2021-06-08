@@ -1,10 +1,10 @@
-package com.example.notesfinal.zbsearch.repository
+package com.example.notesfinal.zbsearch.domain.repository
 
 import android.os.Handler
 import android.os.Looper
 import com.example.notesfinal.zbsearch.BuildConfig
-import com.example.notesfinal.zbsearch.model.Movie
-import com.example.notesfinal.zbsearch.model.responses.ResultMoviesTMDB
+import com.example.notesfinal.zbsearch.domain.model.Movie
+import com.example.notesfinal.zbsearch.domain.model.responses.ResultMoviesTMDB
 import com.google.gson.Gson
 import java.lang.Exception
 import java.net.URL
@@ -90,6 +90,28 @@ object RepositoryTMDBImpl : IRepository {
             } finally {
                 connection.disconnect()
             }
+        }
+    }
+
+    override fun getUpcomingMoviesWithService(): List<Movie> {
+        val url =
+            URL("${URL_MAIN}upcoming?api_key=${BuildConfig.TMDB_MOVIES_API_KEY}&language=ru-RU&page=1")
+        val connection = url.openConnection() as HttpsURLConnection
+
+        try {
+            with(connection) {
+                requestMethod = "GET"
+                readTimeout = READ_TIMEOUT
+
+                val response =
+                    gson.fromJson(inputStream.bufferedReader(), ResultMoviesTMDB::class.java)
+
+                return parceToMoviesList(response)
+            }
+        } catch (exc: Exception) {
+            return emptyList()
+        } finally {
+            connection.disconnect()
         }
     }
 

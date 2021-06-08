@@ -1,7 +1,7 @@
 package com.example.notesfinal.zbsearch
 
 import androidx.appcompat.app.AppCompatActivity
-import com.example.notesfinal.zbsearch.model.Movie
+import com.example.notesfinal.zbsearch.domain.model.Movie
 import com.example.notesfinal.zbsearch.ui.favorites.FavoritesFragment
 import com.example.notesfinal.zbsearch.ui.main.MainFragment
 import com.example.notesfinal.zbsearch.ui.movie.MovieFragment

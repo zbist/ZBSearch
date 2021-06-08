@@ -1,4 +1,4 @@
-package com.example.notesfinal.zbsearch.model.responses
+package com.example.notesfinal.zbsearch.domain.model.responses
 
 import com.google.gson.annotations.SerializedName
 

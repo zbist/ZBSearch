@@ -1,4 +1,4 @@
-package com.example.notesfinal.zbsearch.model
+package com.example.notesfinal.zbsearch.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesfinal.zbsearch.R
-import com.example.notesfinal.zbsearch.model.Movie
+import com.example.notesfinal.zbsearch.domain.model.Movie
 
 class UpcomingMoviesAdapter(val onClick: (Movie) -> Unit) : RecyclerView.Adapter<UpcomingMoviesAdapter.UpcomingHolder>() {
 

@@ -1,6 +1,6 @@
-package com.example.notesfinal.zbsearch.repository
+package com.example.notesfinal.zbsearch.domain.repository
 
-import com.example.notesfinal.zbsearch.model.Movie
+import com.example.notesfinal.zbsearch.domain.model.Movie
 import java.util.concurrent.Executor
 
 object MockRepositoryImpl : IRepository {
@@ -42,6 +42,19 @@ object MockRepositoryImpl : IRepository {
                     Movie()
                 )
             )
+        )
+    }
+
+    override fun getUpcomingMoviesWithService(): List<Movie> {
+        return listOf(
+            Movie(),
+            Movie(),
+            Movie(),
+            Movie(),
+            Movie(),
+            Movie(),
+            Movie(),
+            Movie(),
         )
     }
 

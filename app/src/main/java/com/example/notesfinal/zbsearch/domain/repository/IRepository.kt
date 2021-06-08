@@ -1,6 +1,6 @@
-package com.example.notesfinal.zbsearch.repository
+package com.example.notesfinal.zbsearch.domain.repository
 
-import com.example.notesfinal.zbsearch.model.Movie
+import com.example.notesfinal.zbsearch.domain.model.Movie
 import java.util.concurrent.Executor
 
 interface IRepository {
@@ -14,10 +14,6 @@ interface IRepository {
         executor: Executor,
         callback: (result: RepositoryResult<List<Movie>>) -> Unit
     )
+
+    fun getUpcomingMoviesWithService(): List<Movie>
 }
-
-sealed class RepositoryResult<T>
-
-data class Success<T>(val value: T) : RepositoryResult<T>()
-
-data class Error<T>(val value: Throwable) : RepositoryResult<T>()

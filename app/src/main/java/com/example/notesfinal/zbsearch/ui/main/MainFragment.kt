@@ -1,5 +1,9 @@
 package com.example.notesfinal.zbsearch.ui.main
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -9,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.notesfinal.zbsearch.R
 import com.example.notesfinal.zbsearch.databinding.MainFragmentBinding
 import com.example.notesfinal.zbsearch.RouterHolder
+import com.example.notesfinal.zbsearch.domain.GetUpcomingService
+import com.example.notesfinal.zbsearch.domain.model.Movie
 import com.example.notesfinal.zbsearch.viewBinding
 
 class MainFragment() : Fragment(R.layout.main_fragment) {
@@ -30,7 +36,7 @@ class MainFragment() : Fragment(R.layout.main_fragment) {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState == null) {
-            viewModel.fetchMovies()
+            requireContext().startService(Intent(requireContext(), GetUpcomingService::class.java))
         }
     }
 
@@ -82,6 +88,28 @@ class MainFragment() : Fragment(R.layout.main_fragment) {
         super.onDestroyView()
         nowPlayingMoviesRecyclerView.adapter = null
         upcomingMoviesRecyclerView.adapter = null
+    }
+
+    private val upcomingDescriptionReceiver = object : BroadcastReceiver() {
+
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val result = intent?.getParcelableExtra<Movie>(GetUpcomingService.DESCRIPTION)!!
+            upcomingMoviesAdapter.listOfMovies = listOf(result)
+            upcomingMoviesAdapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        IntentFilter(GetUpcomingService.ACTION).also {
+            requireActivity().registerReceiver(upcomingDescriptionReceiver, it)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        requireActivity().unregisterReceiver(upcomingDescriptionReceiver)
     }
 
 }
