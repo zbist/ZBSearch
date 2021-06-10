@@ -8,8 +8,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesfinal.zbsearch.R
 import com.example.notesfinal.zbsearch.databinding.MainFragmentBinding
-import com.example.notesfinal.zbsearch.RouterHolder
-import com.example.notesfinal.zbsearch.viewBinding
+import com.example.notesfinal.zbsearch.utils.RouterHolder
+import com.example.notesfinal.zbsearch.utils.viewBinding
 
 class MainFragment() : Fragment(R.layout.main_fragment) {
 

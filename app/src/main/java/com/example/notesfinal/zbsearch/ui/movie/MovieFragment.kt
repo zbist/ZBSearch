@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.example.notesfinal.zbsearch.BuildConfig
 import com.example.notesfinal.zbsearch.R
 import com.example.notesfinal.zbsearch.databinding.MovieFragmentBinding
 import com.example.notesfinal.zbsearch.model.Movie
 import com.example.notesfinal.zbsearch.ui.main.MainFragment
-import com.example.notesfinal.zbsearch.viewBinding
+import com.example.notesfinal.zbsearch.utils.viewBinding
 
 class MovieFragment : Fragment(R.layout.movie_fragment) {
 
@@ -34,11 +36,16 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
         with(binding) {
             title.text = movie.title
             englishTitle.text = movie.originalTitle
-            poster.setImageResource(R.mipmap.ic_launcher)
             genre.text = movie.genre
             rating.text = movie.voteAverage
             releaseDate.text = movie.releaseDate
             description.text = movie.overview
+
+            Glide.with(poster)
+                .load("${BuildConfig.IMG_URL}${movie.posterPath}")
+                .into(poster)
+
+
         }
     }
 

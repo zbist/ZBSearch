@@ -29,8 +29,8 @@ class MainViewModel : ViewModel() {
 
     fun fetchMovies() {
         _swipeProgressLiveData.value = true
-        repository.getNowPlayingMovies(executor, {
-            when (it){
+        repository.getNowPlayingMovies {
+            when (it) {
                 is Success -> {
                     _moviesNowPlayingLiveData.value = it.value
                 }
@@ -39,9 +39,9 @@ class MainViewModel : ViewModel() {
                     _errorCheckLiveData.value = true
                 }
             }
-        })
-        repository.getUpcomingMovies(executor, {
-            when (it){
+        }
+        repository.getUpcomingMovies {
+            when (it) {
                 is Success -> {
                     _moviesUpcomingLiveData.value = it.value
                 }
@@ -50,7 +50,7 @@ class MainViewModel : ViewModel() {
                     _errorCheckLiveData.value = true
                 }
             }
-        })
+        }
         _errorCheckLiveData.value = false
         _swipeProgressLiveData.value = false
     }

@@ -5,15 +5,9 @@ import java.util.concurrent.Executor
 
 interface IRepository {
 
-    fun getNowPlayingMovies(
-        executor: Executor,
-        callback: (result: RepositoryResult<List<Movie>>) -> Unit
-    )
+    fun getNowPlayingMovies(callback: (result: RepositoryResult<List<Movie>>) -> Unit)
 
-    fun getUpcomingMovies(
-        executor: Executor,
-        callback: (result: RepositoryResult<List<Movie>>) -> Unit
-    )
+    fun getUpcomingMovies(callback: (result: RepositoryResult<List<Movie>>) -> Unit)
 }
 
 sealed class RepositoryResult<T>

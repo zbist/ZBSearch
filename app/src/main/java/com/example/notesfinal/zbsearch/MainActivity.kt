@@ -2,6 +2,8 @@ package com.example.notesfinal.zbsearch
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.notesfinal.zbsearch.utils.MainRouter
+import com.example.notesfinal.zbsearch.utils.RouterHolder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(R.layout.main_activity), RouterHolder {
