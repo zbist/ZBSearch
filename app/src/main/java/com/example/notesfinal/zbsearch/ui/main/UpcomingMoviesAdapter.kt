@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.notesfinal.zbsearch.BuildConfig
 import com.example.notesfinal.zbsearch.R
 import com.example.notesfinal.zbsearch.model.Movie
 
@@ -24,7 +26,10 @@ class UpcomingMoviesAdapter(val onClick: (Movie) -> Unit) : RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: UpcomingHolder, position: Int) {
         with(holder) {
-            poster.setImageResource(R.mipmap.ic_launcher)
+            Glide.with(poster)
+                .load("${BuildConfig.IMG_URL}${listOfMovies[position].posterPath}")
+                .into(poster)
+
             nameOfMovie.text = listOfMovies[position].title
             dateOfStartMovie.text = listOfMovies[position].releaseDate
         }

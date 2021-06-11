@@ -6,4 +6,8 @@
     <dimen name="card_text_margin">4sp</dimen>
     <dimen name="card_corner_radius">5dp</dimen>
     <dimen name="width_of_card_view">120sp</dimen>
+    <dimen name="poster_width_for_movie_fragment">200dp</dimen>
+    <dimen name="poster_height_for_movie_fragment">300dp</dimen>
+    <dimen name="poster_width_for_RV">100dp</dimen>
+    <dimen name="poster_height_for_RV">150dp</dimen>
 </resources>

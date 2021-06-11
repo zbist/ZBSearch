@@ -6,7 +6,6 @@ import java.util.concurrent.Executor
 object MockRepositoryImpl : IRepository {
 
     override fun getNowPlayingMovies(
-        executor: Executor,
         callback: (result: RepositoryResult<List<Movie>>) -> Unit
     ) {
         callback.invoke(
@@ -26,7 +25,6 @@ object MockRepositoryImpl : IRepository {
     }
 
     override fun getUpcomingMovies(
-        executor: Executor,
         callback: (result: RepositoryResult<List<Movie>>) -> Unit
     ) {
         callback.invoke(
