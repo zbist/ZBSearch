@@ -2,6 +2,7 @@ package com.example.notesfinal.zbsearch.ui.movie
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -30,6 +31,20 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
         super.onViewCreated(view, savedInstanceState)
         val movie = arguments?.getParcelable(MainFragment.MOVIE) ?: Movie()
         initMovie(movie)
+
+        binding.addToFavorite.setOnClickListener {
+
+            movie.isFavorite = !movie.isFavorite
+
+            if (movie.isFavorite) {
+                (it as ImageView).setImageResource(R.drawable.ic_on_favorite)
+                viewModel.addToFavorite(movie)
+            } else {
+                (it as ImageView).setImageResource(R.drawable.ic_add_to_favorite)
+                viewModel.deleteFromFavorite(movie)
+            }
+
+        }
     }
 
     private fun initMovie(movie: Movie) {
@@ -45,6 +60,11 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
                 .load("${BuildConfig.IMG_URL}${movie.posterPath}")
                 .into(poster)
 
+            if (movie.isFavorite) {
+                (addToFavorite as ImageView).setImageResource(R.drawable.ic_on_favorite)
+            } else {
+                (addToFavorite as ImageView).setImageResource(R.drawable.ic_add_to_favorite)
+            }
 
         }
     }

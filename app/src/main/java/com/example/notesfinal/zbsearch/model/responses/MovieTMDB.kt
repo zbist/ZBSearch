@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieTMDB(
 
-    @SerializedName("adult")
-    val adult: Boolean,
+    @SerializedName("id")
+    val id: Long,
     @SerializedName("genre_ids")
     val genreIds: List<Int>,
     @SerializedName("title")
