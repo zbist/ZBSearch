@@ -18,7 +18,7 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
     }
 
     private lateinit var favoriteRecyclerView: RecyclerView
-    private lateinit var favoriteMoviesAdapter: Adapter
+    private lateinit var favoriteMoviesAdapter: FavoritesAdapter
 
     private val viewModel: FavoritesViewModel by viewModels()
 
@@ -40,7 +40,7 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
     }
 
     private fun initAdapterAndRV() {
-        favoriteMoviesAdapter = Adapter {
+        favoriteMoviesAdapter = FavoritesAdapter {
             (activity as RouterHolder).mainRouter.openMovie(it)
         }
 

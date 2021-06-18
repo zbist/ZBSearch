@@ -1,6 +1,9 @@
 package com.example.notesfinal.zbsearch.utils
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.notesfinal.zbsearch.R
 import com.example.notesfinal.zbsearch.model.Movie
 import com.example.notesfinal.zbsearch.ui.favorites.FavoritesFragment
@@ -11,9 +14,9 @@ import com.example.notesfinal.zbsearch.ui.ratings.RatingsFragment
 class MainRouter(private val activity: AppCompatActivity) {
 
     fun openRatings() {
-        activity.supportFragmentManager.apply { popBackStack() }.beginTransaction()
-            .replace(R.id.container_for_fragments, RatingsFragment.newInstance())
-            .commit()
+            activity.supportFragmentManager.apply { popBackStack() }.beginTransaction()
+                .replace(R.id.container_for_fragments, RatingsFragment.newInstance())
+                .commit()
     }
 
     fun openFavorites() {
@@ -32,7 +35,7 @@ class MainRouter(private val activity: AppCompatActivity) {
     fun openHome() {
         activity.supportFragmentManager.apply { popBackStack() }.beginTransaction()
             .replace(R.id.container_for_fragments, MainFragment.newInstance())
-            .commitNow()
+            .commit()
     }
 
 }

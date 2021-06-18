@@ -10,9 +10,8 @@ import com.bumptech.glide.Glide
 import com.example.notesfinal.zbsearch.BuildConfig
 import com.example.notesfinal.zbsearch.R
 import com.example.notesfinal.zbsearch.model.Movie
-import com.example.notesfinal.zbsearch.ui.main.UpcomingMoviesAdapter
 
-class Adapter(val onClick: (Movie) -> Unit) : RecyclerView.Adapter<Adapter.Holder>() {
+class FavoritesAdapter(val onClick: (Movie) -> Unit) : RecyclerView.Adapter<FavoritesAdapter.Holder>() {
 
     var listOfMovies = emptyList<Movie>()
 
