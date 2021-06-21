@@ -6,12 +6,20 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('./../keyStore.jks')
+            storePassword 'Qazplm9874047'
+            keyPassword 'Qazplm9874047'
+            keyAlias 'Movie'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.example.notesfinal.zbsearch"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -20,6 +28,7 @@ android {
 
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org\""
         buildConfigField "String", "IMG_URL", "\"https://image.tmdb.org/t/p/w500\""
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
@@ -67,6 +76,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.fragment:fragment-ktx:1.4.0-alpha02'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

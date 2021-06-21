@@ -6,13 +6,14 @@ import com.example.notesfinal.zbsearch.model.Movie
 import com.example.notesfinal.zbsearch.ui.favorites.FavoritesFragment
 import com.example.notesfinal.zbsearch.ui.main.MainFragment
 import com.example.notesfinal.zbsearch.ui.movie.MovieFragment
+import com.example.notesfinal.zbsearch.ui.ratings.MapsFragment
 import com.example.notesfinal.zbsearch.ui.ratings.RatingsFragment
 
 class MainRouter(private val activity: AppCompatActivity) {
 
     fun openRatings() {
         activity.supportFragmentManager.apply { popBackStack() }.beginTransaction()
-            .replace(R.id.container_for_fragments, RatingsFragment.newInstance())
+            .replace(R.id.container_for_fragments, MapsFragment())
             .commit()
     }
 
