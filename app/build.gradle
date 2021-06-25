@@ -3,9 +3,18 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
+    signingConfigs {
+        key {
+            storeFile file('./../keyStore.jks')
+            storePassword 'Qazplm9874047'
+            keyPassword 'Qazplm9874047'
+            keyAlias 'key0'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
@@ -20,6 +29,7 @@ android {
 
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org\""
         buildConfigField "String", "IMG_URL", "\"https://image.tmdb.org/t/p/w500\""
+        signingConfig signingConfigs.key
     }
 
     buildTypes {
@@ -65,7 +75,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.fragment:fragment-ktx:1.4.0-alpha02'
+    implementation 'androidx.fragment:fragment-ktx:1.4.0-alpha03'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -83,5 +93,9 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+
+    implementation platform('com.google.firebase:firebase-bom:28.2.0')
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
 }
