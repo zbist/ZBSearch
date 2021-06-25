@@ -7,14 +7,6 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        key {
-            storeFile file('./../keyStore.jks')
-            storePassword 'Qazplm9874047'
-            keyPassword 'Qazplm9874047'
-            keyAlias 'key0'
-        }
-    }
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
@@ -29,7 +21,6 @@ android {
 
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org\""
         buildConfigField "String", "IMG_URL", "\"https://image.tmdb.org/t/p/w500\""
-        signingConfig signingConfigs.key
     }
 
     buildTypes {
