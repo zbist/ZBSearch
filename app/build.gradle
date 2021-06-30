@@ -7,6 +7,16 @@ plugins {
 }
 
 android {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file("apikey.properties").newDataInputStream())
+    signingConfigs {
+        key {
+            storeFile file('./../keyStore.jks')
+            storePassword properties.getProperty("key_store_pass")
+            keyAlias 'key0'
+            keyPassword properties.getProperty("key_store_pass")
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
@@ -14,19 +24,25 @@ android {
         applicationId "com.example.notesfinal.zbsearch"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org\""
         buildConfigField "String", "IMG_URL", "\"https://image.tmdb.org/t/p/w500\""
+        signingConfig signingConfigs.key
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        beta {
+            initWith debug
+            versionNameSuffix "-beta"
         }
     }
     compileOptions {
@@ -41,8 +57,6 @@ android {
     }
 
     buildTypes.each {
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file("apikey.properties").newDataInputStream())
         def apiKey = properties.getProperty("tmdb_movies_api_key", "")
         it.buildConfigField "String", "TMDB_MOVIES_API_KEY", apiKey
     }
